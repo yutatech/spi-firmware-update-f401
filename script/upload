@@ -2,4 +2,4 @@
 
 PRJ_DIR="$(dirname $(cd "$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd))"
 
-arm-none-eabi-gdb $PRJ_DIR/build/spi-firmware-update-f401.elf -x $PRJ_DIR/script/upload.gdb
+arm-none-eabi-gdb -q $PRJ_DIR/build/spi-firmware-update-f401.elf -x $PRJ_DIR/script/upload.gdb
