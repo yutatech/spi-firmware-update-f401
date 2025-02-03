@@ -1,0 +1,5 @@
+# !/bin/bash
+
+PRJ_DIR="$(dirname $(cd "$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd))"
+
+cmake -S $PRJ_DIR -B $PRJ_DIR/build
