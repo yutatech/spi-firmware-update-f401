@@ -1,5 +1,12 @@
 # !/bin/bash
 
 PRJ_DIR="$(dirname $(cd "$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd))"
+PORT_FORWARD_CMD="ssh -fN -L 4444:localhost:4444 -L 3333:localhost:3333 robot.local"
+
+pkill -f "$PORT_FORWARD_CMD" || true
+
+eval $PORT_FORWARD_CMD
 
 arm-none-eabi-gdb -q $PRJ_DIR/build/spi-firmware-update-f401.elf -x $PRJ_DIR/script/upload.gdb
+
+pkill -f "$PORT_FORWARD_CMD"

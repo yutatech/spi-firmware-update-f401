@@ -18,12 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "hal_bootloader_jump/jump.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,10 +89,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  int a= 0;
 
   /* USER CODE END 2 */
-
+  JumpToBootloader();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -99,6 +102,17 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    uint8_t txData[13] = "Hello50\n\r";
+    uint8_t rxData[13] = {0};
+    HAL_SPI_TransmitReceive(&hspi1, txData, rxData, 13, 1000);
+
+    printf("Received: %d\r\n", a++);
+
+    // printf("Received: ");
+    // for (int i = 0; i < 13; i++) {
+    //   printf("%d ", rxData[i]);
+    // }
+    // printf("\r\n");
   }
   /* USER CODE END 3 */
 }
