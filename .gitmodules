@@ -1,0 +1,3 @@
+[submodule "lib/hal-bootloader-jump"]
+	path = lib/hal-bootloader-jump
+	url = git@github.com:yutatech/hal-bootloader-jump.git
