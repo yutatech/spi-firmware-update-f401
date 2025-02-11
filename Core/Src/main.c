@@ -94,7 +94,7 @@ int main(void)
   int a= 0;
 
   /* USER CODE END 2 */
-  JumpToBootloader();
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -108,11 +108,10 @@ int main(void)
 
     printf("Received: %d\r\n", a++);
 
-    // printf("Received: ");
-    // for (int i = 0; i < 13; i++) {
-    //   printf("%d ", rxData[i]);
-    // }
-    // printf("\r\n");
+    if (rxData[0] == 'B') {
+      printf("Bootloader Jump\r\n");
+      JumpToBootloader();
+    }
   }
   /* USER CODE END 3 */
 }
